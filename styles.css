@@ -14,6 +14,26 @@ body {
     color: var(--text-color);
 }
 
+.group-name {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: auto;
+}
+
+.empty {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
