@@ -117,16 +117,33 @@ function showError(text) {
 function renderGroups(groups) {
     console.log("Рендеринг групп:", groups);
     const list = document.getElementById('groups-list');
-    
-    if(!groups || groups.length === 0) {
-        console.warn("Нет групп для отображения");
-        list.innerHTML = '<div class="empty">Создайте или присоединитесь к группе</div>';
+    list.innerHTML = '';
+
+    if (!groups || groups.length === 0) {
+        list.innerHTML = '<div class="empty">Нет доступных групп</div>';
         return;
     }
 
-    currentGroup = groups[0].id;
-    console.log("Установлена текущая группа:", currentGroup);
-    showMainScreen();
+    groups.forEach(group => {
+        const div = document.createElement('div');
+        div.className = 'group-item';
+        div.innerHTML = `
+            <span class="group-name">${group.name}</span>
+            <button class="btn-icon" onclick="selectGroup('${group.id}')">▶</button>
+        `;
+        list.appendChild(div);
+    });
+
+    currentGroup = groups[0]?.id;
+    if (currentGroup) {
+        showMainScreen();
+    }
+}
+
+function showMainScreen() {
+    showScreen('main-screen');
+    document.getElementById('event-time').value = '';
+    document.getElementById('event-location').value = '';
 }
 
 // Инициализация
