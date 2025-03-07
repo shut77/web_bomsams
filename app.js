@@ -36,7 +36,7 @@ async function createGroup() {
     }
 
     try {
-        const response = await fetch('https://ВАШ_БОТ.railway.app/create_group', {
+        const response = await fetch('https://bomsams-production.up.railway.app/create_group', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -66,7 +66,7 @@ async function joinGroup() {
     }
 
     try {
-        const response = await fetch('https://ВАШ_БОТ.railway.app/join_group', {
+        const response = await fetch('https://bomsams-production.up.railway.app/join_group', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -96,7 +96,7 @@ async function addEvent() {
 
     try {
         const response = await fetch(
-            'https://ВАШ_БОТ.railway.app/create_event',
+            'https://bomsams-production.up.railway.app/create_event',
             {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
