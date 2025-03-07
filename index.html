@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lunch Groups</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Экран выбора группы -->
+        <div id="auth-screen" class="screen active">
+            <h1>🍽️ BoomsAms Lunch 🍽️</h1>
+            <div class="button-group">
+                <button class="btn primary" onclick="showCreateGroupForm()">Создать группу</button>
+                <button class="btn secondary" onclick="showJoinGroupForm()">Присоединиться</button>
+            </div>
+        </div>
+
+        <!-- Форма создания группы -->
+        <div id="create-group-form" class="screen">
+            <h2>Создать группу</h2>
+            <input type="text" id="group-name" placeholder="Название группы">
+            <input type="password" id="group-password" placeholder="Пароль">
+            <div class="button-group">
+                <button class="btn secondary" onclick="showAuthScreen()">Назад</button>
+                <button class="btn primary" onclick="createGroup()">Создать</button>
+            </div>
+        </div>
+
+        <!-- Форма присоединения к группе -->
+        <div id="join-group-form" class="screen">
+            <h2>Присоединиться к группе</h2>
+            <input type="text" id="join-group-name" placeholder="Название группы">
+            <input type="password" id="join-group-password" placeholder="Пароль">
+            <div class="button-group">
+                <button class="btn secondary" onclick="showAuthScreen()">Назад</button>
+                <button class="btn primary" onclick="joinGroup()">Присоединиться</button>
+            </div>
+        </div>
+
+        <!-- Основной интерфейс -->
+        <div id="main-screen" class="screen">
+            <div class="header">
+                <h2 id="current-group-name"></h2>
+                <button class="btn icon" onclick="showAuthScreen()">🔄</button>
+            </div>
+
+            <!-- Добавление события -->
+            <div class="event-form">
+                <input type="datetime-local" id="event-time">
+                <input type="text" id="event-location" placeholder="Место">
+                <button class="btn primary" onclick="addEvent()">Добавить</button>
+            </div>
+
+            <!-- Текущие события -->
+            <div class="section">
+                <h3>Ближайшие события</h3>
+                <div id="current-events" class="list"></div>
+            </div>
+
+            <!-- История событий -->
+            <div class="section">
+                <h3>История</h3>
+                <div id="history-events" class="list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
