@@ -11,16 +11,13 @@
 </head>
 <body>
 
-  <!-- Шапка приложения с фоном и стикерами -->
+  <!-- Шапка приложения с градиентным фоном и бургер-стикерами -->
   <header class="app-header">
     <div class="header-content">
       <div class="logo-and-stickers">
-        <!-- Левые стикеры -->
-        <img src="img/food-sticker1.png" alt="food sticker" class="food-sticker">
-        <!-- Название приложения -->
+        <span class="burger-sticker" role="img" aria-label="Burger">🍔</span>
         <h1 class="app-title">BomsAms</h1>
-        <!-- Правые стикеры -->
-        <img src="img/food-sticker2.png" alt="food sticker" class="food-sticker">
+        <span class="burger-sticker" role="img" aria-label="Burger">🍔</span>
       </div>
     </div>
   </header>
@@ -36,7 +33,7 @@
         <button class="btn primary" onclick="showCreateGroupForm()">Создать группу</button>
         <button class="btn primary" onclick="showJoinGroupForm()">Присоединиться</button>
       </div>
-      <!-- Кнопка «Назад» (на этом экране ведёт сама на себя, или можете убрать) -->
+      <!-- На этом экране «Назад» можно оставить как заглушку, либо скрыть совсем -->
       <button class="btn secondary back-btn" onclick="showInitialScreen()">Назад</button>
     </div>
 
@@ -65,7 +62,9 @@
     <!-- Экран списка групп пользователя -->
     <div id="group-list-screen" class="screen">
       <h2>Мои группы</h2>
-      <div id="groups-list" class="list"></div>
+      <div id="groups-list" class="list">
+        <!-- Здесь будут отображаться группы -->
+      </div>
       <button class="btn secondary back-btn" onclick="showInitialScreen()">Назад</button>
     </div>
 
@@ -96,7 +95,7 @@
     </div>
 
   </div>
-  
+
   <!-- Подключаем ваш JS -->
   <script src="app.js"></script>
 </body>
