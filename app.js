@@ -64,30 +64,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function showEventHistory() {
-    // Получение истории событий для выбранной группы
-    hideAllScreens();
-    document.getElementById('group-detail-screen').classList.add('active');
-    try {
-      const response = await fetch(`https://bomsams-production.up.railway.app/get_events?group=${window.currentGroup.name}&filter=history`);
-      const events = await response.json();
-      let html = '';
-      if (events.length === 0) {
-        html = '<p>История пуста</p>';
-      } else {
-        events.forEach(event => {
-          html += `<div class="event-item">
-                      <p>Дата: ${event.date}</p>
-                      <p>Время: ${event.start_time || ''} - ${event.end_time || ''}</p>
-                      <p>Место: ${event.location}</p>
-                      <p>Создатель: ${event.user_id}</p>
-                   </div>`;
-        });
-      }
-      document.getElementById('group-content').innerHTML = html;
-    } catch (error) {
-      console.error("Ошибка загрузки истории событий:", error);
+  hideAllScreens();
+  document.getElementById('group-detail-screen').classList.add('active');
+  try {
+    const response = await fetch(`https://bomsams-production.up.railway.app/get_events?group=${window.currentGroup.name}&filter=history`);
+    const events = await response.json();
+    let html = '';
+    if (events.length === 0) {
+      html = '<p>История пуста</p>';
+    } else {
+      events.forEach(event => {
+        html += `<div class="event-card">
+                   <div class="event-header">Дата: ${event.date}</div>
+                   <p>Время: ${event.start_time || ''} - ${event.end_time || ''}</p>
+                   <p>Место: ${event.location}</p>
+                   <p>Создатель: ${event.user_id}</p>
+                 </div>`;
+      });
     }
+    document.getElementById('group-content').innerHTML = html;
+  } catch (error) {
+    console.error("Ошибка загрузки истории событий:", error);
   }
+}
 
   // Функция для рендеринга списка групп
   function renderGroups(groups) {
