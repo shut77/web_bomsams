@@ -83,30 +83,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   async function showEventHistory() {
-  hideAllScreens();
-  document.getElementById('group-detail-screen').classList.add('active');
-  try {
-    const response = await fetch(`https://bomsams-production.up.railway.app/get_events?group=${window.currentGroup.name}&filter=history`);
-    const events = await response.json();
-    let html = '';
-    if (events.length === 0) {
-      html = '<p>История пуста</p>';
-    } else {
-      events.forEach(event => {
-        html += `<div class="event-card">
-                   <div class="event-header">Дата: ${event.date}</div>
-                   <p>Время: ${event.start_time || ''} - ${event.end_time || ''}</p>
-                   <p>Место: ${event.location}</p>
-                   <p>Создатель: ${event.user_id}</p>
-                 </div>`;
+    hideAllScreens();
+    document.getElementById('group-detail-screen').classList.add('active');
+    try {
+      const response = await fetch(`https://bomsams-production.up.railway.app/get_events?group=${window.currentGroup.name}&filter=history`);
+      const events = await response.json();
+      let html = '';
+      if (events.length === 0) {
+        html = '<p>История пуста</p>';
+      } else {
+        events.forEach(event => {
+          html += `<div class="event-card" data-event-id="${event.id}">
+                     <div class="event-header">Дата: ${event.date}</div>
+                     <p>Время: ${event.start_time} - ${event.end_time}</p>
+                     <p>Место: ${event.location}</p>
+                     <p>Создатель: ${event.user_id}</p>
+                   </div>`;
+        });
+      }
+      document.getElementById('group-content').innerHTML = html;
+      
+      // Назначаем обработчик длительного нажатия на каждую карточку
+      const eventCards = document.querySelectorAll('.event-card');
+      eventCards.forEach(card => {
+        let pressTimer;
+        card.addEventListener('mousedown', startPress);
+        card.addEventListener('touchstart', startPress);
+        card.addEventListener('mouseup', cancelPress);
+        card.addEventListener('touchend', cancelPress);
+        card.addEventListener('mouseleave', cancelPress);
+        
+        function startPress(e) {
+          // Запускаем таймер на 6 секунд (6000 мс)
+          pressTimer = setTimeout(() => {
+            // По истечении 6 секунд спрашиваем подтверждение
+            if (confirm('Удалить событие?')) {
+              deleteEvent(card.dataset.eventId);
+            }
+          }, 6000);
+        }
+        
+        function cancelPress(e) {
+          clearTimeout(pressTimer);
+        }
       });
+      
+    } catch (error) {
+      console.error("Ошибка загрузки истории событий:", error);
     }
-    document.getElementById('group-content').innerHTML = html;
-  } catch (error) {
-    console.error("Ошибка загрузки истории событий:", error);
   }
-}
 
+
+// Функция для удаления события через новый endpoint
+  async function deleteEvent(eventId) {
+    try {
+      const response = await fetch(`https://bomsams-production.up.railway.app/delete_event`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ group: window.currentGroup.name, event_id: eventId })
+      });
+      if (response.ok) {
+        alert('Событие удалено');
+        showEventHistory(); // Обновляем список событий
+      } else {
+        const errorData = await response.json();
+        alert("Ошибка удаления: " + errorData.error);
+      }
+    } catch (error) {
+      console.error("Ошибка при удалении события:", error);
+    }
+  }
+
+
+  
   // Функция для рендеринга списка групп
   function renderGroups(groups) {
     const list = document.getElementById('groups-list');
