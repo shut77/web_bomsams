@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadData() {
         try {
             const userId = tg.initDataUnsafe.user.id;
-            const response = await fetch(`/get_groups?user_id=${userId}`);
+            const response = await fetch(`https://bomsams-production.up.railway.app/get_groups?user_id=${userId}`);
             const groups = await response.json();
             renderGroups(groups);
         } catch (error) {
