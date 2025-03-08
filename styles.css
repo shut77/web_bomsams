@@ -185,6 +185,12 @@ input {
   box-shadow: var(--box-shadow);
   margin-bottom: 16px;
   position: relative;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.event-card.pressed {
+  opacity: 0.6;
 }
 
 /* Иконка-стикер на карточке */
