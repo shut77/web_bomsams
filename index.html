@@ -9,34 +9,83 @@
 </head>
 <body>
     <div class="container">
-        <!-- Шапка -->
-        <header class="header">
-            <h1>🍽️ Lunch Groups</h1>
-        </header>
+        <!-- Экран авторизации -->
+        <div id="auth-screen" class="screen active">
+            <h1>🍽️ BoomsAms Lunch 🍽️</h1>
+            
+            <!-- Блок с группами -->
+            <div class="section">
+                <h2>Ваши группы</h2>
+                <div id="groups-list" class="list">
+                    <!-- Группы будут подгружаться здесь -->
+                </div>
+            </div>
 
-        <!-- Список групп -->
-        <div class="section">
-            <h2>Ваши группы</h2>
-            <div id="groups-list" class="list"></div>
-            <button class="btn primary" onclick="openCreateGroupForm()">Создать группу</button>
-        </div>
-
-        <!-- Форма создания события -->
-        <div id="event-form" class="form hidden">
-            <h2>Новое событие</h2>
-            <input type="date" id="event-date" placeholder="Дата">
-            <input type="time" id="event-time" placeholder="Время">
-            <input type="text" id="event-location" placeholder="Место">
-            <div class="form-buttons">
-                <button class="btn secondary" onclick="closeEventForm()">Отмена</button>
-                <button class="btn primary" onclick="submitEvent()">Сохранить</button>
+            <!-- Кнопки действий -->
+            <div class="button-group">
+                <button class="btn primary" onclick="showCreateGroupForm()">Создать группу</button>
+                <button class="btn secondary" onclick="showJoinGroupForm()">Присоединиться</button>
             </div>
         </div>
 
-        <!-- История событий -->
-        <div class="section">
-            <h2>История</h2>
-            <div id="history-list" class="list"></div>
+        <!-- Форма создания группы -->
+        <div id="create-group-form" class="screen">
+            <h2>Создать группу</h2>
+            <input type="text" id="group-name" placeholder="Название группы" required>
+            <input type="password" id="group-password" placeholder="Пароль" required>
+            <div class="button-group">
+                <button class="btn secondary" onclick="showAuthScreen()">Назад</button>
+                <button class="btn primary" onclick="createGroup()">Создать</button>
+            </div>
+        </div>
+
+        <!-- Форма присоединения -->
+        <div id="join-group-form" class="screen">
+            <h2>Присоединиться к группе</h2>
+            <input type="text" id="join-group-name" placeholder="Название группы" required>
+            <input type="password" id="join-group-password" placeholder="Пароль" required>
+            <div class="button-group">
+                <button class="btn secondary" onclick="showAuthScreen()">Назад</button>
+                <button class="btn primary" onclick="joinGroup()">Присоединиться</button>
+            </div>
+        </div>
+
+        <!-- Основной интерфейс -->
+        <div id="main-screen" class="screen">
+            <!-- Шапка -->
+            <div class="header">
+                <h2 id="current-group-name">Название группы</h2>
+                <button class="btn icon" onclick="showAuthScreen()" title="Обновить">🔄</button>
+            </div>
+
+            <!-- Форма добавления события -->
+            <div class="event-form">
+                <input type="datetime-local" id="event-time" required>
+                <input type="text" id="event-location" placeholder="Место встречи" required>
+                <button class="btn primary" onclick="addEvent()">Добавить</button>
+            </div>
+
+            <!-- Ближайшие события -->
+            <div class="section">
+                <h3>Ближайшие события</h3>
+                <div id="current-events" class="list">
+                    <!-- События будут здесь -->
+                </div>
+            </div>
+
+            <!-- История событий -->
+            <div class="section">
+                <h3>История</h3>
+                <div id="history-events" class="list">
+                    <!-- Исторические события здесь -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Лоадер -->
+        <div id="loader" class="loader">
+            <div class="spinner"></div>
+            <p>Загрузка данных...</p>
         </div>
     </div>
 
