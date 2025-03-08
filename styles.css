@@ -23,16 +23,19 @@ body {
   min-height: 100vh;
 }
 
-/* Шапка с градиентным фоном */
+/* Шапка с моей картинкой фоном */
 .app-header {
   background: url('images/shapka.png') no-repeat center center;
   background-size: cover;
-  height: 200px;
+  height: 250px; /* Увеличили высоту */
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* Опускаем контент ближе к низу */
   justify-content: center;
   position: relative;
+  border-bottom: 8px solid #FF7F50; /* Рамка снизу */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Добавили объём */
 }
+
 
 .header-overlay {
   position: absolute;
@@ -50,9 +53,10 @@ body {
   gap: 12px;
   z-index: 2;
   color: #fff;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  margin-bottom: 12px; /* Опустили текст ближе к нижней границе */
 }
 
 /* Блок с логотипом и бургер-стикерами */
