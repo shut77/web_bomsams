@@ -115,7 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function startPress(e) {
           // Запускаем таймер на 6 секунд (6000 мс)
+          card.classList.add('pressed');
           pressTimer = setTimeout(() => {
+            card.classList.remove('pressed');
             // По истечении 6 секунд спрашиваем подтверждение
             if (confirm('Удалить событие?')) {
               deleteEvent(card.dataset.eventId);
@@ -125,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function cancelPress(e) {
           clearTimeout(pressTimer);
+          card.classList.remove('pressed');
         }
       });
       
