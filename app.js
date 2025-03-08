@@ -44,15 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showAddEventForm() {
-  hideAllScreens();
-  // Показываем только форму добавления события
+  // Очищаем только контент, но оставляем экран и вкладки
+  document.getElementById('group-content').innerHTML = ''; 
   document.getElementById('add-event-form').classList.add('active');
 }
 
 
   function hideAddEventForm() {
-  hideAllScreens();
-  document.getElementById('group-detail-screen').classList.add('active');
+  document.getElementById('add-event-form').classList.remove('active');
+  showEventHistory(); // или showNearestEvents(), если нужно
 }
 
 
