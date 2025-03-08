@@ -178,6 +178,7 @@ input {
 }
 
 /* Карточки событий (история) */
+/*
 .event-card {
   background: var(--secondary-bg);
   padding: 16px;
@@ -192,6 +193,23 @@ input {
 .event-card.pressed {
   opacity: 0.6;
 }
+*/
+.event-card {
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  background-color: #f9f9f9; /* Обычный цвет */
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.event-card.pressed {
+  background-color: #d6d6d6; /* Серый цвет при удержании */
+  opacity: 0.7;
+}
+
+
 
 /* Иконка-стикер на карточке */
 .event-card::before {
