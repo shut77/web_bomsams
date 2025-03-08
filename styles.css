@@ -28,13 +28,15 @@ body {
   background: url('images/shapka.png') no-repeat center center;
   background-size: cover;
   height: 450px; /* Увеличили высоту */
+  min-height: 450px; /* На всякий случай */
   display: flex;
-  align-items: flex-end; /* Опускаем контент ближе к низу */
+  align-items: flex-end;
   justify-content: center;
   position: relative;
-  border-bottom: 8px solid #FF7F50; /* Рамка снизу */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Добавили объём */
+  border-bottom: 8px solid #FF7F50;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
+
 
 
 .header-overlay {
