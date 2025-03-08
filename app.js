@@ -28,6 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
             list.appendChild(div);
         });
     }
+    function showAuthScreen() {
+        document.getElementById('auth-screen').classList.add('active');
+        document.getElementById('create-group-form').classList.remove('active');
+        document.getElementById('join-group-form').classList.remove('active');
+        document.getElementById('main-screen').classList.remove('active');
+    }
+    
+    function showCreateGroupForm() {
+        document.getElementById('auth-screen').classList.remove('active');
+        document.getElementById('create-group-form').classList.add('active');
+        document.getElementById('join-group-form').classList.remove('active');
+    }
+    
+    function showJoinGroupForm() {
+        document.getElementById('auth-screen').classList.remove('active');
+        document.getElementById('join-group-form').classList.add('active');
+        document.getElementById('create-group-form').classList.remove('active');
+    }
+
+
+    
 
     async function loadData() {
         try {
@@ -39,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Ошибка:", error);
         }
     }
+    
 
     loadData();
 });
