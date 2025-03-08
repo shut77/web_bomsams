@@ -122,6 +122,7 @@ input {
     position: absolute;
     top: -10px;
     left: -10px;
+    margin-bottom: 8px;
 }
 
 .event-card p {
@@ -142,3 +143,15 @@ input {
     align-items: center;
     margin-bottom: 24px;
 }
+
+@media (max-width: 600px) {
+  .event-card {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .event-card::before {
+    font-size: 20px;
+  }
+}
+
