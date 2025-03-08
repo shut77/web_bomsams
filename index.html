@@ -4,87 +4,101 @@
   <meta charset="UTF-8">
   <title>BomsAms App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Подключите свои стили, если они есть -->
+  <!-- Подключаем Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    /* Простой стиль для переключения экранов */
-    .screen { display: none; }
-    .screen.active { display: block; }
-    .button-group { margin: 10px 0; }
-    .btn { padding: 10px 20px; margin: 5px; }
-    .list { margin: 10px 0; }
-    .group-item { padding: 10px; border: 1px solid #ccc; margin-bottom: 5px; cursor: pointer; }
-  </style>
 </head>
 <body>
-  <!-- Начальный экран с тремя кнопками -->
-  <div id="initial-screen" class="screen active">
-    <h1>Выберите действие</h1>
-    <div class="button-group">
-      <button class="btn" onclick="showGroupListScreen()">Мои группы</button>
-      <button class="btn" onclick="showCreateGroupForm()">Создать группу</button>
-      <button class="btn" onclick="showJoinGroupForm()">Присоединиться</button>
+  <header class="app-header">
+    <div class="container">
+      <h1 class="app-title">BomsAms</h1>
     </div>
-  </div>
-
-  <!-- Форма создания группы -->
-  <div id="create-group-form" class="screen">
-    <h2>Создать группу</h2>
-    <input type="text" id="group-name" placeholder="Название группы" required>
-    <input type="password" id="group-password" placeholder="Пароль" required>
-    <div class="button-group">
-      <button class="btn" onclick="showInitialScreen()">Назад</button>
-      <button class="btn" onclick="createGroup()">Создать</button>
+  </header>
+  <main class="container">
+    <!-- Начальный экран с тремя кнопками -->
+    <div id="initial-screen" class="screen active card">
+      <h2>Выберите действие</h2>
+      <div class="button-group">
+        <button class="btn primary" onclick="showGroupListScreen()">Мои группы</button>
+        <button class="btn primary" onclick="showCreateGroupForm()">Создать группу</button>
+        <button class="btn primary" onclick="showJoinGroupForm()">Присоединиться</button>
+      </div>
     </div>
-  </div>
-
-  <!-- Форма присоединения к группе -->
-  <div id="join-group-form" class="screen">
-    <h2>Присоединиться к группе</h2>
-    <input type="text" id="join-group-name" placeholder="Название группы" required>
-    <input type="password" id="join-group-password" placeholder="Пароль" required>
-    <div class="button-group">
-      <button class="btn" onclick="showInitialScreen()">Назад</button>
-      <button class="btn" onclick="joinGroup()">Присоединиться</button>
+    
+    <!-- Форма создания группы -->
+    <div id="create-group-form" class="screen card">
+      <h2>Создать группу</h2>
+      <input type="text" id="group-name" placeholder="Название группы" required>
+      <input type="password" id="group-password" placeholder="Пароль" required>
+      <div class="button-group">
+        <button class="btn secondary" onclick="showInitialScreen()">Назад</button>
+        <button class="btn primary" onclick="createGroup()">Создать</button>
+      </div>
     </div>
-  </div>
-
-  <!-- Экран списка групп пользователя -->
-  <div id="group-list-screen" class="screen">
-    <h2>Мои группы</h2>
-    <div id="groups-list" class="list">
-      <!-- Здесь будут отображаться группы -->
+    
+    <!-- Форма присоединения к группе -->
+    <div id="join-group-form" class="screen card">
+      <h2>Присоединиться к группе</h2>
+      <input type="text" id="join-group-name" placeholder="Название группы" required>
+      <input type="password" id="join-group-password" placeholder="Пароль" required>
+      <div class="button-group">
+        <button class="btn secondary" onclick="showInitialScreen()">Назад</button>
+        <button class="btn primary" onclick="joinGroup()">Присоединиться</button>
+      </div>
     </div>
-    <button class="btn" onclick="showInitialScreen()">Назад</button>
-  </div>
-
-  <!-- Экран деталей выбранной группы -->
-  <div id="group-detail-screen" class="screen">
-    <h2 id="group-title">Название группы</h2>
-    <div class="button-group">
-      <button class="btn" onclick="showAddEventForm()">Добавить Boms</button>
-      <button class="btn" onclick="showNearestEvents()">Ближайшие</button>
-      <button class="btn" onclick="showEventHistory()">История Ams</button>
+    
+    <!-- Экран списка групп пользователя -->
+    <div id="group-list-screen" class="screen card">
+      <h2>Мои группы</h2>
+      <div id="groups-list" class="list">
+        <!-- Здесь будут отображаться группы -->
+      </div>
+      <button class="btn secondary" onclick="showInitialScreen()">Назад</button>
     </div>
-    <button class="btn" onclick="showGroupListScreen()">Назад</button>
-    <!-- Контент группы, где будут выводиться события или форма добавления -->
-    <div id="group-content"></div>
-  </div>
-
-  <!-- Форма добавления события -->
-  <div id="add-event-form" class="screen">
-    <h3>Добавить событие</h3>
-    <label>Дата: <input type="date" id="event-date"></label><br>
-    <label>Время начала: <input type="time" id="start-time"></label><br>
-    <label>Время окончания: <input type="time" id="end-time"></label><br>
-    <label>Место: <input type="text" id="event-location" placeholder="Место встречи"></label><br>
-    <div class="button-group">
-      <button class="btn" onclick="addEvent()">Сохранить событие</button>
-      <button class="btn" onclick="hideAddEventForm()">Отмена</button>
+    
+    <!-- Экран деталей выбранной группы -->
+    <div id="group-detail-screen" class="screen card">
+      <div class="group-header">
+        <h2 id="group-title">Название группы</h2>
+        <button class="btn secondary small" onclick="showGroupListScreen()">Назад</button>
+      </div>
+      <nav class="group-tabs">
+        <button class="tab-btn" onclick="showAddEventForm()">Добавить Boms</button>
+        <button class="tab-btn" onclick="showNearestEvents()">Ближайшие</button>
+        <button class="tab-btn" onclick="showEventHistory()">История Ams</button>
+      </nav>
+      <div id="group-content" class="group-content">
+        <!-- Здесь будет отображаться контент группы (события, форма и т.п.) -->
+      </div>
     </div>
-  </div>
-
+    
+    <!-- Форма добавления события -->
+    <div id="add-event-form" class="screen card">
+      <h3>Добавить событие</h3>
+      <div class="form-group">
+        <label for="event-date">Дата</label>
+        <input type="date" id="event-date">
+      </div>
+      <div class="form-group">
+        <label for="start-time">Время начала</label>
+        <input type="time" id="start-time">
+      </div>
+      <div class="form-group">
+        <label for="end-time">Время окончания</label>
+        <input type="time" id="end-time">
+      </div>
+      <div class="form-group">
+        <label for="event-location">Место</label>
+        <input type="text" id="event-location" placeholder="Место встречи">
+      </div>
+      <div class="button-group">
+        <button class="btn primary" onclick="addEvent()">Сохранить событие</button>
+        <button class="btn secondary" onclick="hideAddEventForm()">Отмена</button>
+      </div>
+    </div>
+    
+  </main>
   <script src="app.js"></script>
 </body>
 </html>
