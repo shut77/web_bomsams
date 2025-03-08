@@ -1,157 +1,234 @@
 :root {
-    --primary-color: #2EA6FF;
-    --background-color: #FFFFFF;
-    --text-color: #000000;
-    --secondary-bg: #F3F2F8;
-    --border-radius: 12px;
+  --primary-color: #2EA6FF;
+  --secondary-color: #FF7F50;
+  --background-color: #F9F9F9;
+  --text-color: #333333;
+  --secondary-bg: #FFFFFF;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --font-family: 'Poppins', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    margin: 0;
-    padding: 16px;
-    background: var(--background-color);
-    color: var(--text-color);
-}
-
-.group-name {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: var(--text-color);
-}
-
-.btn-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin-left: auto;
-}
-
-.empty {
-    text-align: center;
-    color: #666;
-    padding: 20px;
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
 }
 
+/* Header styles */
+.app-header {
+  background: var(--primary-color);
+  padding: 16px 0;
+  text-align: center;
+  color: #fff;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Screen visibility */
 .screen {
-    display: none;
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .screen.active {
-    display: block;
+  display: block;
 }
 
+/* Карточки */
+.card {
+  background: var(--secondary-bg);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 24px;
+}
+
+/* Button groups */
 .button-group {
-    display: flex;
-    gap: 8px;
-    margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
 }
 
+/* Кнопки */
 .btn {
-    border: none;
-    padding: 12px 24px;
-    border-radius: var(--border-radius);
-    font-weight: 500;
-    cursor: pointer;
-    flex: 1;
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 16px;
+  transition: filter 0.2s ease;
 }
 
-.primary {
-    background: var(--primary-color);
-    color: white;
+.btn.primary {
+  background: var(--primary-color);
+  color: #fff;
 }
 
-.secondary {
-    background: var(--secondary-bg);
-    color: var(--text-color);
+.btn.primary:hover {
+  filter: brightness(0.9);
 }
 
+.btn.secondary {
+  background: #e0e0e0;
+  color: var(--text-color);
+}
+
+.btn.secondary:hover {
+  filter: brightness(0.9);
+}
+
+.btn.small {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Inputs */
 input {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 16px;
 }
 
+/* Группа для формы */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+/* Список групп */
 .list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
 }
 
-/* Стили для группы в списке "Мои группы" */
 .group-item {
-    background: var(--secondary-bg);
-    padding: 12px 16px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--secondary-bg);
+  padding: 16px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .group-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Улучшенные стили для карточек событий (история Ams) */
+/* Шапка экрана группы */
+.group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Навигационные табы группы */
+.group-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: var(--border-radius);
+  background: #f0f0f0;
+  cursor: pointer;
+  font-size: 16px;
+  transition: filter 0.2s ease;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* Контент группы */
+.group-content {
+  margin-top: 16px;
+}
+
+/* Карточки событий */
 .event-card {
-    background: var(--secondary-bg);
-    padding: 16px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    position: relative;
+  background: var(--secondary-bg);
+  padding: 16px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 16px;
+  position: relative;
 }
 
-/* Добавляем «стикер»-иконку */
 .event-card::before {
-    content: "📌";
-    font-size: 24px;
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    margin-bottom: 8px;
+  content: "📌";
+  font-size: 24px;
+  position: absolute;
+  top: -12px;
+  left: -12px;
+}
+
+.event-card .event-header {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 8px;
 }
 
 .event-card p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.4;
+  margin: 4px 0;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.event-header {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 4px;
+/* Анимация появления */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-}
-
+/* Адаптивные стили */
 @media (max-width: 600px) {
-  .event-card {
-    padding: 12px;
+  .btn {
     font-size: 14px;
+    padding: 10px;
   }
-
-  .event-card::before {
+  
+  .app-title {
     font-size: 20px;
   }
+  
+  .card {
+    padding: 16px;
+  }
 }
-
