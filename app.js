@@ -44,24 +44,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showAddEventForm() {
-    // Показываем форму добавления события внутри экрана группы
-    hideAllScreens();
-    document.getElementById('group-detail-screen').classList.add('active');
-    document.getElementById('add-event-form').classList.add('active');
-  }
+  hideAllScreens();
+  // Показываем только форму добавления события
+  document.getElementById('add-event-form').classList.add('active');
+}
+
 
   function hideAddEventForm() {
-    // Скрываем форму добавления события и возвращаемся к экрану деталей группы
-    document.getElementById('add-event-form').classList.remove('active');
-    document.getElementById('group-detail-screen').classList.add('active');
-  }
+  hideAllScreens();
+  document.getElementById('group-detail-screen').classList.add('active');
+}
 
-  function showNearestEvents() {
-    // Заглушка для ближайших событий
-    hideAllScreens();
-    document.getElementById('group-detail-screen').classList.add('active');
-    document.getElementById('group-content').innerHTML = '<p>Ближайшие события пока не реализованы.</p>';
+
+  async function showNearestEvents() {
+  hideAllScreens();
+  document.getElementById('group-detail-screen').classList.add('active');
+  try {
+    const response = await fetch(`https://bomsams-production.up.railway.app/get_events?group=${window.currentGroup.name}&filter=current`);
+    const events = await response.json();
+    let html = '';
+    if (events.length === 0) {
+      html = '<p>Нет ближайших событий</p>';
+    } else {
+      events.forEach(event => {
+        html += `<div class="event-card">
+                   <div class="event-header">Дата: ${event.date}</div>
+                   <p>Время: ${event.start_time} - ${event.end_time}</p>
+                   <p>Место: ${event.location}</p>
+                   <p>Создатель: ${event.user_id}</p>
+                 </div>`;
+      });
+    }
+    document.getElementById('group-content').innerHTML = html;
+  } catch (error) {
+    console.error("Ошибка загрузки ближайших событий:", error);
   }
+}
+
 
   async function showEventHistory() {
   hideAllScreens();
