@@ -1,15 +1,14 @@
 :root {
-  --primary-color: #2EA6FF;       /* Основной цвет (синий) */
-  --secondary-color: #FF7F50;     /* Второй цвет (коралловый) */
-  --background-color: #F9F9F9;    /* Цвет фона */
-  --text-color: #333333;          /* Основной цвет текста */
-  --secondary-bg: #FFFFFF;        /* Цвет карточек/блоков */
-  --border-radius: 12px;          /* Скругление */
+  --primary-color: #2EA6FF;
+  --secondary-color: #FF7F50;
+  --background-color: #F9F9F9;
+  --text-color: #333333;
+  --secondary-bg: #FFFFFF;
+  --border-radius: 12px;
   --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   --font-family: 'Poppins', sans-serif;
 }
 
-/* Сброс отступов и размеров */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -23,21 +22,17 @@ body {
   min-height: 100vh;
 }
 
-/* Шапка с моей картинкой фоном */
 .app-header {
   background: url('images/shapka.png') no-repeat center center;
   background-size: cover;
-  height: 200px; /* Увеличили высоту */
-  min-height: 200px; /* На всякий случай */
+  height: 200px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   position: relative;
-  border-bottom: 8px solid #FF7F50;
+  border-bottom: 8px solid var(--secondary-color);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
-
-
 
 .header-overlay {
   position: absolute;
@@ -47,63 +42,52 @@ body {
   z-index: 1;
 }
 
-/* Контейнер заголовка и стикеров */
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
   z-index: 2;
   color: #fff;
   font-size: 28px;
   font-weight: bold;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-  margin-bottom: 12px; /* Опустили текст ближе к нижней границе */
+  margin-bottom: 12px;
 }
 
-/* Блок с логотипом и бургер-стикерами */
 .logo-and-stickers {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
 }
 
 .app-title {
   font-size: 28px;
   font-weight: 600;
-  color: #fff;
 }
 
-/* Стикеры бургеров (эмоджи) */
 .burger-sticker {
   font-size: 36px;
 }
 
-/* Основной контейнер для «экранов» */
 .container {
   max-width: 600px;
   margin: 0 auto;
   padding: 16px;
 }
 
-/* Каждый экран */
 .screen {
   display: none;
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Активация экрана */
 .screen.active {
   display: block;
 }
 
-/* Заголовки */
 h2, h3 {
   margin-bottom: 16px;
 }
 
-/* Группы кнопок */
 .button-group {
   display: flex;
   flex-wrap: wrap;
@@ -111,7 +95,6 @@ h2, h3 {
   margin: 16px 0;
 }
 
-/* Общий стиль кнопок */
 .btn {
   background: var(--primary-color);
   color: #fff;
@@ -119,21 +102,21 @@ h2, h3 {
   border-radius: var(--border-radius);
   padding: 12px 16px;
   cursor: pointer;
-  transition: filter 0.2s, opacity 0.2s;
+  transition: all 0.2s ease;
   font-size: 16px;
+  flex: 1 1 calc(50% - 4px);
 }
 
 .btn:hover {
   filter: brightness(0.9);
 }
 
-/* Второстепенная кнопка */
 .btn.secondary {
   background: #e0e0e0;
   color: var(--text-color);
+  flex: 1 1 100%;
 }
 
-/* Закрепляем кнопку «Назад» внизу экрана по центру, с небольшой прозрачностью */
 .back-btn {
   position: fixed;
   bottom: 16px;
@@ -141,12 +124,13 @@ h2, h3 {
   transform: translateX(-50%);
   opacity: 0.8;
   z-index: 9999;
+  transition: opacity 0.2s ease;
 }
+
 .back-btn:hover {
   opacity: 1;
 }
 
-/* Поля ввода */
 input {
   width: 100%;
   padding: 12px;
@@ -155,21 +139,19 @@ input {
   border: 1px solid #ddd;
 }
 
-/* Список групп или событий */
 .list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* Элемент списка группы */
 .group-item {
   background: var(--secondary-bg);
   padding: 16px;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .group-item:hover {
@@ -177,63 +159,75 @@ input {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Карточки событий (история) */
-
+/* Исправленные стили для карточек событий */
 .event-card {
   background: var(--secondary-bg);
-  padding: 16px;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  margin-bottom: 16px;
+  margin: 12px 0;
+  padding: 16px;
   position: relative;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: all 0.3s ease;
+  border: 1px solid #ddd;
 }
 
-
-.event-card {
-  cursor: pointer;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
-  background-color: #f9f9f9; /* Обычный цвет */
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 5px;
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .event-card.pressed {
-  background-color: #d6d6d6; /* Серый цвет при удержании */
-  opacity: 0.3;
+  opacity: 0.7;
+  transform: scale(0.98);
 }
 
-
-
-/* Иконка-стикер на карточке */
+/* Стикер-прищепка */
 .event-card::before {
   content: "📌";
-  font-size: 24px;
   position: absolute;
-  top: -12px;
-  left: -12px;
+  top: -10px;
+  left: -10px;
+  font-size: 24px;
+  color: var(--secondary-color);
+  transform: rotate(-10deg);
 }
 
 .event-header {
-  font-weight: 600;
   font-size: 18px;
+  font-weight: 600;
   margin-bottom: 8px;
 }
 
-/* Анимация появления экрана */
+.event-details {
+  margin-top: 12px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.detail-row::before {
+  content: attr(data-icon);
+  font-size: 18px;
+  color: var(--primary-color);
+}
+
+/* Анимация появления */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Адаптивность для узких экранов */
 @media (max-width: 600px) {
   .app-header {
     height: 120px;
@@ -242,7 +236,7 @@ input {
     font-size: 20px;
   }
   .burger-sticker {
-    font-size: 20px;
+    font-size: 24px;
   }
   .btn {
     font-size: 14px;
