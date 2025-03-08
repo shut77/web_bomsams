@@ -27,7 +27,7 @@ body {
 .app-header {
   background: url('images/shapka.png') no-repeat center center;
   background-size: cover;
-  height: 350px; /* Увеличили высоту */
+  height: 450px; /* Увеличили высоту */
   display: flex;
   align-items: flex-end; /* Опускаем контент ближе к низу */
   justify-content: center;
